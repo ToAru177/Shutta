@@ -12,3 +12,10 @@ D:\김범석\git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csprojAssemblyReference.c
 D:\김범석\git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csproj.CoreCompileInputs.cache
 D:\김범석\git\Shutta\Shutta\Shutta\obj\Debug\Shutta.exe
 D:\김범석\git\Shutta\Shutta\Shutta\obj\Debug\Shutta.pdb
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.exe.config
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.exe
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.pdb
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.exe
+C:\Users\USER\Desktop\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.pdb
