@@ -20,6 +20,7 @@ namespace Shutta
 
         public int Money { get; set; }
         public string ID { get; set; }
+        public int BattingMoney { get; set; }
 
         // 승리한 횟수
         private int _winningcount;
@@ -48,6 +49,11 @@ namespace Shutta
         {
             return _winningcount;
         }
-        
+
+        public void DropCard()
+        {
+            for (int i = 0; i < Cards.Count(); i++)
+                Cards[i].Number = 0;
+        }
     }
 }

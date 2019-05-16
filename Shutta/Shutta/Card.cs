@@ -11,7 +11,7 @@ namespace Shutta
 
         private int _number;
 
-        public int Number { get; }
+        public int Number { get; set; }
         public bool IsKwang { get; private set; }
 
         public Card(int number, bool iskwang)

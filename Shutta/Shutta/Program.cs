@@ -9,24 +9,91 @@ namespace Shutta
     
     class Program
     {
-        
+        //private int battingMoney;
         static void Main(string[] args)
         {
+            /*
+            int numOfPlayer;
+            int seedMoney;
+            int battingMoney;
+            int input;
+
+            
+            while (true)
+            {
+                Console.WriteLine("플레이어 수를 입력하세요. (2 ~ 5명)");
+                numOfPlayer = int.Parse(Console.ReadLine());
+
+                // 2보다 작거나, 5보다 큰수 입력시 재입력 요구
+                if(numOfPlayer < 2 || numOfPlayer > 5)
+                {
+                    Console.WriteLine("입력 범위를 넘었습니다. 다시 입력하세요.");
+                    Console.WriteLine();
+                    continue;
+                }
+
+                Console.WriteLine("기본 소지금을 입력하세요.(500 ~ 2000)");
+                seedMoney = int.Parse(Console.ReadLine());
+
+                // 금액 범위 위반시 재입력 요구
+                if(seedMoney < 500 || seedMoney > 2000)
+                {
+                    Console.WriteLine("입력 범위를 넘었습니다. 다시 입력하세요.");
+                    Console.WriteLine();
+                    continue;
+                }
+
+                Console.WriteLine("기본 판돈을 입력하세요.(100 ~ 500)");
+                battingMoney = int.Parse(Console.ReadLine());
+
+                // 금액 범위 위반시 재입력 요구
+                if (battingMoney < 100 || battingMoney > 500)
+                {
+                    Console.WriteLine("입력 범위를 넘었습니다. 다시 입력하세요.");
+                    Console.WriteLine();
+                    continue;
+                }
+
+                Console.WriteLine("룰 타입을 선택하세요. (1:Basic, 2:Simple)");
+                input = int.Parse(Console.ReadLine());
+
+                // 1,2 외에 수 입력시 재입력 요구
+                if (input != 1 && input != 2)
+                {
+                    Console.WriteLine("존재 하지 않은 룰 타입 입니다. 다시 입력하세요.");
+                    Console.WriteLine();
+                    continue;
+                }
+
+                break;
+
+            }
+            */
+
             Console.WriteLine("플레이어 수를 입력하세요. (2 ~ 5명)");
             int numOfPlayer = int.Parse(Console.ReadLine());
+
             // 2보다 작거나, 5보다 큰수 입력시 재입력 요구
+            
 
             Console.WriteLine("기본 소지금을 입력하세요.(500 ~ 2000)");
             int seedMoney = int.Parse(Console.ReadLine());
+
             // 금액 범위 위반시 재입력 요구
+            
 
             Console.WriteLine("기본 판돈을 입력하세요.(100 ~ 500)");
             int battingMoney = int.Parse(Console.ReadLine());
+
             // 금액 범위 위반시 재입력 요구
+            
 
             Console.WriteLine("룰 타입을 선택하세요. (1:Basic, 2:Simple)");
             int input = int.Parse(Console.ReadLine());
+
             // 1,2 외에 수 입력시 재입력 요구
+            
+
 
             RuleType ruleType = (RuleType)input;
 
@@ -41,16 +108,17 @@ namespace Shutta
                     players.Add(new SimplePlayer());
             }
 
-            // player들에게 기본금 지급
+            // player 초기 설정
             int num = 1;
             foreach (var player in players)
             {
                 player.Money = seedMoney;
+                player.BattingMoney = battingMoney;
                 player.ID = string.Format($"player_{num++}");
             }
 
             Round round = new Round();
-
+       
             while (true)
             {
                 // 한명이 오링되면 게임 종료
@@ -69,7 +137,8 @@ namespace Shutta
                 // 학교 출석
                 foreach (var player in players)
                 {
-                    if (player.Money < battingMoney)
+                    
+                    if (player.Money < player.BattingMoney)
                     {
                         int lackBattingMoney = player.Money;                                            
                         player.Money -= lackBattingMoney;
@@ -77,8 +146,8 @@ namespace Shutta
                     }
                     else
                     {                        
-                        player.Money -= battingMoney;
-                        dealer.PutMoney(battingMoney);
+                        player.Money -= player.BattingMoney;
+                        dealer.PutMoney(player.BattingMoney);
                     }
                     
                 }
@@ -93,7 +162,53 @@ namespace Shutta
                         player.Cards.Add(dealer.DrawCard());
 
                     // 플레이어들의 각 카드 출력
+                    Console.WriteLine($"[{player.ID} 패]");
                     Console.WriteLine(player.GetCardText());
+                    Console.WriteLine("-----------------------------------");
+
+                    int score = player.CalculateScore();
+
+                    if (score >= 0 && score <= 9)
+                        Console.WriteLine($"[ {score}끗 ]");
+
+                    else if (score >= 11 && score <= 20)
+                        Console.WriteLine($"[ {score % 10}땡 ]");
+
+                    else if (score > 20 && score < 200)
+                        Console.WriteLine($"[ {score % 10}광땡 ]");
+
+                    else
+                        Console.WriteLine($"[ {score}점 ]");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"{player.ID} 콜(1)/다이(2) 선택.");
+                    Console.Write(">>");
+                    input = int.Parse(Console.ReadLine());
+
+                    Batting batting = (Batting)input;
+
+                    if (batting == Batting.Call)
+                    {
+                        if (player.Money < player.BattingMoney)
+                        {
+                            int lackBattingMoney = player.Money;
+                            player.Money -= lackBattingMoney;
+                            dealer.PutMoney(lackBattingMoney);
+                        }
+                        else
+                        {
+                            player.Money -= player.BattingMoney;
+                            dealer.PutMoney(player.BattingMoney);
+                        }
+                    }
+
+                    else
+                    {
+                        player.DropCard();
+                    }
+
+                    Console.WriteLine();
+
                 }
                 Console.WriteLine("-----------------------------------");
 
@@ -101,6 +216,7 @@ namespace Shutta
 
                 // 승자 찾기
                 Player winner = FindWinner(players);
+                Console.WriteLine($"\t{winner.ID} 승!!");
 
                 // 승자의 승리 횟수 증가
                 winner.UpWinnigCount();
@@ -170,7 +286,53 @@ namespace Shutta
                     player.Cards.Add(dealer.DrawCard());
 
                 // 플레이어들의 각 카드 출력
+                Console.WriteLine($"[{player.ID} 패]");
                 Console.WriteLine(player.GetCardText());
+                Console.WriteLine("-----------------------------------");
+
+                int score = player.CalculateScore();
+
+                if (score >= 0 && score <= 9)
+                    Console.WriteLine($"[ {score}끗 ]");
+
+                else if (score >= 11 && score <= 20)
+                    Console.WriteLine($"[ {score % 10}땡 ]");
+                                         
+                else if(score > 20 && score < 200)
+                    Console.WriteLine($"[ {score % 10}광땡 ]");
+               
+                else 
+                    Console.WriteLine($"[ {score}점 ]");
+
+                Console.WriteLine();
+                Console.WriteLine($"{player.ID} 콜(1)/다이(2) 선택.");
+                Console.Write(">>");
+                int input = int.Parse(Console.ReadLine());
+
+                Batting batting = (Batting)input;
+
+                if (batting == Batting.Call)
+                {
+                    if (player.Money < player.BattingMoney)
+                    {
+                        int lackBattingMoney = player.Money;
+                        player.Money -= lackBattingMoney;
+                        dealer.PutMoney(lackBattingMoney);
+                    }
+                    else
+                    {
+                        player.Money -= player.BattingMoney;
+                        dealer.PutMoney(player.BattingMoney);
+                    }
+                }
+
+                else
+                {
+                    player.DropCard();
+                }
+
+                Console.WriteLine();
+
             }
             Console.WriteLine("-----------------------------------");
 
