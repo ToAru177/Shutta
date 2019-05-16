@@ -34,6 +34,5 @@ namespace Shutta
             return builder.ToString();
         }
 
-        
     }
 }

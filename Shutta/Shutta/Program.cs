@@ -34,15 +34,18 @@ namespace Shutta
             foreach(var player in players)
                 player.Money = SeedMoney;
 
-            int round = 1;
+           
+            Round round = new Round();
 
             while (true)
             {
+                round.uproundCount();
+
                 // 한명이 오링되면 게임 종료
                 if (IsAnyoneOring(players))
                     break;
 
-                Console.WriteLine($"============= Round {round++} =============");
+                Console.WriteLine($"============= Round {round.Getcount()} =============");
 
                 Dealer dealer = new Dealer();
 
@@ -83,6 +86,10 @@ namespace Shutta
                 Console.WriteLine("===================================");
             }
 
+            foreach (var player in players)
+                Console.Write(round.WinningRate());
+            Console.WriteLine();
+
         }
 
         private static Player FindWinner(List<Player> players)
@@ -91,11 +98,18 @@ namespace Shutta
             int score1 = players[1].CalculateScore();
 
             if (score0 > score1)
+            {
+
+                //players[0].winningCount++;
                 return players[0];
-            // 무승부인 경우 추가하기
-            // 학교를 한번더 가기
+                // 무승부인 경우 추가하기
+                // 학교를 한번더 가기
+            }
             else
+            {
+                //players[1].winningCount++;
                 return players[1];
+            }
         }
 
         private static bool IsAnyoneOring(List<Player> players)
