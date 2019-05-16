@@ -31,7 +31,7 @@ namespace Shutta
             int input = int.Parse(Console.ReadLine());
             // 1,2 외에 수 입력시 재입력 요구
 
-           
+          
 
             RuleType ruleType = (RuleType)input;
 
