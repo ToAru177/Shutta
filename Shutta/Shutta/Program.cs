@@ -14,15 +14,31 @@ namespace Shutta
 
         static void Main(string[] args)
         {
+
+            Console.WriteLine("플레이어 수를 입력하세요. (2 ~ 5명)");
+            int numOfPlayer = int.Parse(Console.ReadLine());
+            // 2보다 작거나, 5보다 큰수 입력시 재입력 요구
+
+            Console.WriteLine("기본 소지금을 입력하세요.(500 ~ 2000)");
+            int seedMoney = int.Parse(Console.ReadLine());
+            // 금액 범위 위반시 재입력 요구
+
+            Console.WriteLine("기본 판돈을 입력하세요.(100 ~ 500)");
+            int battingMoney = int.Parse(Console.ReadLine());
+            // 금액 범위 위반시 재입력 요구
+
             Console.WriteLine("룰 타입을 선택하세요. (1:Basic, 2:Simple)");
             int input = int.Parse(Console.ReadLine());
+            // 1,2 외에 수 입력시 재입력 요구
+
+           
 
             RuleType ruleType = (RuleType)input;
 
 
             // 두명의 플레이어 존재
             List<Player> players = new List<Player>();
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < numOfPlayer; i++)
             {
                 if (ruleType == RuleType.Basic)
                     players.Add(new BasicPlayer());
@@ -30,9 +46,10 @@ namespace Shutta
                     players.Add(new SimplePlayer());
             }
 
+
             // player들에게 기본금 지급
             foreach(var player in players)
-                player.Money = SeedMoney;
+                player.Money = seedMoney;
 
             int round = 1;
 
@@ -49,8 +66,8 @@ namespace Shutta
                 // 학교 출석
                 foreach (var player in players)
                 {
-                    player.Money -= BattingMoney;
-                    dealer.PutMoney(BattingMoney);
+                    player.Money -= battingMoney;
+                    dealer.PutMoney(battingMoney);
                 }
 
                 // 카드 돌리기
@@ -87,10 +104,15 @@ namespace Shutta
 
         private static Player FindWinner(List<Player> players)
         {
+            List<int> score = new List<int>();
+            for (int i = 0; i < players.Count(); i++)
+                score.Add(players[i].CalculateScore());
+            /*
             int score0 = players[0].CalculateScore();
             int score1 = players[1].CalculateScore();
+            */
 
-            if (score0 > score1)
+            if (score[0] > score[1])
                 return players[0];
             // 무승부인 경우 추가하기
             // 학교를 한번더 가기
