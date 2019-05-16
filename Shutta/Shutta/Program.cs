@@ -10,8 +10,7 @@ namespace Shutta
     class Program
     {
         // 상수는 대게 public으로..
-        public const int SeedMoney = 500;
-        public const int BattingMoney = 100;
+       
         
 
         static void Main(string[] args)
@@ -64,8 +63,18 @@ namespace Shutta
                 // 학교 출석
                 foreach (var player in players)
                 {
-                    player.Money -= battingMoney;
-                    dealer.PutMoney(battingMoney);
+                    if (player.Money < battingMoney)
+                    {
+                        int lackBattingMoney = player.Money;                                            
+                        player.Money -= lackBattingMoney;
+                        dealer.PutMoney(lackBattingMoney);                        
+                    }
+                    else
+                    {                        
+                        player.Money -= battingMoney;
+                        dealer.PutMoney(battingMoney);
+                    }
+                    
                 }
 
                 // 카드 돌리기
