@@ -68,7 +68,6 @@ namespace Shutta
                 Console.WriteLine("-----------------------------------");
 
 
-
                 // 승자 찾기
                 Player winner = FindWinner(players);
 
