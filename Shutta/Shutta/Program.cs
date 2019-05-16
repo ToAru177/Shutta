@@ -83,6 +83,9 @@ namespace Shutta
                 Console.WriteLine("===================================");
             }
 
+            Console.WriteLine("순위:");players.Sort();
+
+
         }
 
         private static Player FindWinner(List<Player> players)

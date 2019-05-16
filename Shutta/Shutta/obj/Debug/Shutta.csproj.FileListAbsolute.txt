@@ -5,3 +5,10 @@ D:\IoT\C#\Shutta\Shutta\obj\Debug\Shutta.csprojAssemblyReference.cache
 D:\IoT\C#\Shutta\Shutta\obj\Debug\Shutta.csproj.CoreCompileInputs.cache
 D:\IoT\C#\Shutta\Shutta\obj\Debug\Shutta.exe
 D:\IoT\C#\Shutta\Shutta\obj\Debug\Shutta.pdb
+D:\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csprojAssemblyReference.cache
+D:\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.csproj.CoreCompileInputs.cache
+D:\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.exe
+D:\Git\Shutta\Shutta\Shutta\obj\Debug\Shutta.pdb
+D:\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.exe.config
+D:\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.exe
+D:\Git\Shutta\Shutta\Shutta\bin\Debug\Shutta.pdb
