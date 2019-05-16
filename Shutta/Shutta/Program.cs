@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Shutta
 {
-    //aaaabbbb
     class Program
     {
         // 상수는 대게 public으로..
