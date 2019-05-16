@@ -13,7 +13,7 @@ namespace Shutta
             Cards = new List<Card>();
         }
 
-       
+        
 
         // Property
         public List<Card> Cards { get; }
