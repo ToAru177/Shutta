@@ -19,6 +19,10 @@ namespace Shutta
         public List<Card> Cards { get; }
 
         public int Money { get; set; }
+        public string ID { get; set; }
+
+        // 승리한 횟수
+        private int _winningcount;
 
         // 점수 계산 method
         public abstract int CalculateScore();
@@ -34,6 +38,16 @@ namespace Shutta
             return builder.ToString();
         }
 
+        // _winningcount 증가 메소드
+        public void UpWinnigCount()
+        {
+            _winningcount++;
+        }
+
+        public int GetWinningCount()
+        {
+            return _winningcount;
+        }
         
     }
 }

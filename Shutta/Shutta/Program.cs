@@ -9,10 +9,7 @@ namespace Shutta
     
     class Program
     {
-        // 상수는 대게 public으로..
-       
         
-
         static void Main(string[] args)
         {
             Console.WriteLine("플레이어 수를 입력하세요. (2 ~ 5명)");
@@ -34,7 +31,7 @@ namespace Shutta
             RuleType ruleType = (RuleType)input;
 
 
-            // 두명의 플레이어 존재
+            // 플레이어 생성
             List<Player> players = new List<Player>();
             for (int i = 0; i < numOfPlayer; i++)
             {
@@ -45,10 +42,14 @@ namespace Shutta
             }
 
             // player들에게 기본금 지급
+            int num = 1;
             foreach (var player in players)
+            {
                 player.Money = seedMoney;
+                player.ID = string.Format($"player_{num++}");
+            }
 
-            int round = 1;
+            Round round = new Round();
 
             while (true)
             {
@@ -59,7 +60,9 @@ namespace Shutta
                     break;
                 }
 
-                Console.WriteLine($"============= Round {round++} =============");
+                round.UpRoundCount();
+
+                Console.WriteLine($"============= Round {round.GetRoundCount()} =============");
 
                 Dealer dealer = new Dealer();
 
@@ -99,6 +102,9 @@ namespace Shutta
                 // 승자 찾기
                 Player winner = FindWinner(players);
 
+                // 승자의 승리 횟수 증가
+                winner.UpWinnigCount();
+
                 // 승자에게 상금 주기
                 winner.Money += dealer.GetMoney();
 
@@ -113,10 +119,13 @@ namespace Shutta
             int cnt = 1;
             foreach (var player in players)
             {
-                Console.WriteLine((cnt++) + " " + player.Money);
+                double rate = ((double)player.GetWinningCount() / (double)round.GetRoundCount()) * 100.0;
+                Console.WriteLine($"{cnt++}위 : {player.ID} \t{player.Money} \t{rate.ToString("0.0")}%");
             }
 
         }
+
+        //  남은 잔액 내림차순 정렬
         private static void MoneySort(List<Player> players)
         {
             players.Sort((Player p1, Player p2) => p2.Money.CompareTo(p1.Money));
