@@ -54,7 +54,10 @@ namespace Shutta
             {
                 // 한명이 오링되면 게임 종료
                 if (IsAnyoneOring(players))
+                {
+                    MoneySort(players);
                     break;
+                }
 
                 Console.WriteLine($"============= Round {round++} =============");
 
@@ -107,7 +110,17 @@ namespace Shutta
                 Console.WriteLine("===================================");
             }
 
-        }        
+            int cnt = 1;
+            foreach (var player in players)
+            {
+                Console.WriteLine((cnt++) + " " + player.Money);
+            }
+
+        }
+        private static void MoneySort(List<Player> players)
+        {
+            players.Sort((Player p1, Player p2) => p2.Money.CompareTo(p1.Money));
+        }
 
         private static Player FindWinner(List<Player> players)
         {
