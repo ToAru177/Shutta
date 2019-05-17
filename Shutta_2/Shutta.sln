@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shutta", "Shutta\Shutta.csproj", "{31DB300C-C9C7-4BAA-92C8-C4E3A3181EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shutta.UniTest", "Shutta.UniTest\Shutta.UniTest.csproj", "{0BAF4ABB-474F-46F6-89A0-D705DE8A7584}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31DB300C-C9C7-4BAA-92C8-C4E3A3181EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31DB300C-C9C7-4BAA-92C8-C4E3A3181EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31DB300C-C9C7-4BAA-92C8-C4E3A3181EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31DB300C-C9C7-4BAA-92C8-C4E3A3181EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAF4ABB-474F-46F6-89A0-D705DE8A7584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAF4ABB-474F-46F6-89A0-D705DE8A7584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAF4ABB-474F-46F6-89A0-D705DE8A7584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAF4ABB-474F-46F6-89A0-D705DE8A7584}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3E5141B-4076-47A0-9CE2-291333F187B5}
+	EndGlobalSection
+EndGlobal
